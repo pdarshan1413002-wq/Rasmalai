@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Rasmalai 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    width:100vw;
+    height:100vh;
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
+}
+
+/* ========== SCREENS ========== */
+.screen{
+    display:none;
+    width:100vw;
+    height:100vh;
+    padding:30px;
+    position:relative;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.active{display:flex;}
+
+/* ========== BACKGROUNDS ========== */
+.bg1{
+    background:linear-gradient(135deg,#ff4d6d,#ff8fab);
+    color:white;
+}
+.bg2{
+    background:
+    radial-gradient(circle at 10% 20%, #ffd1dc 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, #ffb6c1 0%, transparent 40%),
+    linear-gradient(135deg,#ffe6eb,#ffd1dc);
+    color:#ff4d6d;
+}
+.bg3{
+    background:
+    radial-gradient(circle at 20% 30%, #ffccd5 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, #ffb3c6 0%, transparent 45%),
+    linear-gradient(135deg,#ffdee9,#ffb6c1);
+    color:#ff4d6d;
+}
+.bg4{
+    background:
+    radial-gradient(circle at 15% 25%, #ff8fab 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, #ff4d6d 0%, transparent 40%),
+    linear-gradient(135deg,#ff4d6d,#ff8fab);
+    color:white;
+}
+
+/* ========== TEXT ========== */
+h1{
+    font-family:'Pacifico',cursive;
+    font-size:3rem;
+    margin-bottom:15px;
+}
+p{
+    font-size:1.2rem;
+    margin-bottom:15px;
+}
+
+/* ========== BUTTONS ========== */
+button{
+    padding:14px 34px;
+    font-size:18px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    margin:12px;
+    font-weight:600;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+.yes{
+    background:linear-gradient(135deg,#2ecc71,#6ee7b7);
+    color:white;
+}
+
+/* NO button – initial position */
+.no{
+    background:linear-gradient(135deg,#ff6b6b,#ff8787);
+    color:white;
+    position:absolute;
+    top:62%;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* ========== CONFESSION BOX ========== */
+.instruction{margin-bottom:20px;}
+.box{
+    background:rgba(255,255,255,0.9);
+    color:#ff4d6d;
+    padding:35px;
+    border-radius:25px;
+    max-width:92%;
+    font-family:'Pacifico',cursive;
+    font-size:1.5rem;
+    box-shadow:0 25px 50px rgba(0,0,0,0.25);
+    cursor:pointer;
+}
+
+/* ========== FINAL PAGE PHOTOS ========== */
+.center-photo{
+    width:220px;
+    border-radius:22px;
+    box-shadow:0 0 35px rgba(255,255,255,0.7);
+    margin:15px 0;
+    z-index:2;
+}
+.corner{
+    position:absolute;
+    width:100px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    opacity:0.9;
+}
+.tl{top:20px;left:20px;}
+.tr{top:20px;right:20px;}
+.bl{bottom:20px;left:20px;}
+.br{bottom:20px;right:20px;}
+
+/* ========== HEARTS ========== */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:22px;
+    animation:float 4s linear infinite;
+}
+@keyframes float{
+    to{transform:translateY(-100vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<div class="screen bg1 active" id="s1">
+    <h1>Hey Rasmalai 🤍</h1>
+    <p>I have something special for you</p>
+    <button class="yes" onclick="go(2)">Tap here 💖</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen bg2" id="s2">
+    <h1>Are you really ready<br>my rasmalai? 🤍</h1>
+    <button class="yes" onclick="go(3)">YES 💕</button>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="screen bg3" id="s3">
+    <p class="instruction">Tap the box below 👇</p>
+    <div class="box" onclick="showConfession()">Click me 🤍</div>
+</div>
+
+<!-- SCREEN 4 -->
+<div class="screen bg4" id="s4">
+    <h1>Will you be my Valentine? 💘</h1>
+    <button class="yes" onclick="yesClicked()">YES 💕</button>
+    <button class="no" id="noBtn" onclick="moveNo()">NO 😅</button>
+</div>
+
+<!-- SCREEN 5 -->
+<div class="screen bg4" id="s5">
+
+    <img src="pic1.png" class="corner tl">
+    <img src="pic2.png" class="corner tr">
+    <img src="pic3.png" class="corner bl">
+    <img src="pic4.png" class="corner br">
+
+    <h1>I Love You 🤍</h1>
+
+    <img src="photo.png" class="center-photo">
+
+    <p>
+        My rasmalai 🤍<br>
+        You are my comfort, my happiness,<br>
+        my favorite thought every day.<br>
+        With you, everything feels right.<br>
+        I choose you. Always. 💞
+    </p>
+
+    <audio id="music" src="romantic.mp3"></audio>
+</div>
+
+<script>
+function go(n){
+    document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+    document.getElementById("s"+n).classList.add("active");
+}
+
+function showConfession(){
+    document.querySelector(".box").innerHTML=
+    `Hey!<br><br>
+    My cutuuu babyyy 🤍<br>
+    My rasmalai 🤍<br><br>
+    You stole my heart and now I won't let you go that easy.`;
+    setTimeout(()=>go(4),8000);
+}
+
+/* NO button logic */
+const noBtn=document.getElementById("noBtn");
+const msgs=["Are you sure? 😶","Think again 😏","Really? 😳","Last chance 😤","Okay click again 😅"];
+let i=0;
+
+function moveNo(){
+    noBtn.innerText=msgs[i];
+    i=(i+1)%msgs.length;
+
+    const pad=20;
+    const maxX=innerWidth-noBtn.offsetWidth-pad;
+    const maxY=innerHeight-noBtn.offsetHeight-pad;
+
+    noBtn.style.left=Math.random()*maxX+"px";
+    noBtn.style.top=Math.random()*maxY+"px";
+    noBtn.style.transform="none";
+}
+
+function yesClicked(){
+    go(5);
+    document.getElementById("music").play();
+    setInterval(()=>{
+        const h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="🤍";
+        h.style.left=Math.random()*100+"vw";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),4000);
+    },300);
+}
+</script>
+
+</body>
+</html>
