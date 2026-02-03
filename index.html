@@ -84,7 +84,7 @@ button{
     color:white;
 }
 
-/* NO button – initial position */
+/* NO button */
 .no{
     background:linear-gradient(135deg,#ff6b6b,#ff8787);
     color:white;
@@ -108,25 +108,33 @@ button{
     cursor:pointer;
 }
 
-/* ========== FINAL PAGE PHOTOS ========== */
+/* ========== FINAL PAGE PHOTOS (ONLY CHANGE HERE) ========== */
 .center-photo{
-    width:220px;
-    border-radius:22px;
-    box-shadow:0 0 35px rgba(255,255,255,0.7);
-    margin:15px 0;
+    width:260px; /* BIGGER */
+    border-radius:24px;
+    box-shadow:0 0 40px rgba(255,255,255,0.75);
+    margin:20px 0;
     z-index:2;
 }
+
 .corner{
     position:absolute;
-    width:100px;
-    border-radius:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-    opacity:0.9;
+    width:180px; /* BIGGER CORNER PHOTOS */
+    border-radius:22px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.35);
+    opacity:0.95;
 }
+
 .tl{top:20px;left:20px;}
 .tr{top:20px;right:20px;}
 .bl{bottom:20px;left:20px;}
 .br{bottom:20px;right:20px;}
+
+/* Mobile adjustment */
+@media(max-width:600px){
+    .center-photo{width:230px;}
+    .corner{width:150px;}
+}
 
 /* ========== HEARTS ========== */
 .heart{
@@ -207,7 +215,6 @@ function showConfession(){
     setTimeout(()=>go(4),8000);
 }
 
-/* NO button logic */
 const noBtn=document.getElementById("noBtn");
 const msgs=["Are you sure? 😶","Think again 😏","Really? 😳","Last chance 😤","Okay click again 😅"];
 let i=0;
@@ -215,13 +222,8 @@ let i=0;
 function moveNo(){
     noBtn.innerText=msgs[i];
     i=(i+1)%msgs.length;
-
-    const pad=20;
-    const maxX=innerWidth-noBtn.offsetWidth-pad;
-    const maxY=innerHeight-noBtn.offsetHeight-pad;
-
-    noBtn.style.left=Math.random()*maxX+"px";
-    noBtn.style.top=Math.random()*maxY+"px";
+    noBtn.style.left=Math.random()*70+"%";
+    noBtn.style.top=Math.random()*70+"%";
     noBtn.style.transform="none";
 }
 
